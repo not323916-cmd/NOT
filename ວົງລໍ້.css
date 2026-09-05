@@ -1,0 +1,488 @@
+* {
+    box-sizing: border-box;
+
+    font-family:
+        "Phetsarath OT",
+        sans-serif;
+}
+
+
+body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: white;
+}
+
+
+.container {
+    width: 95%;
+
+    max-width: 900px;
+
+    text-align: center;
+
+    padding: 20px 0;
+}
+
+
+h1 {
+    font-size: 35px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   วงล้อ
+========================= */
+
+.wheel-box {
+    position: relative;
+
+    width: 500px;
+
+    max-width: 90vw;
+
+    aspect-ratio: 1 / 1;
+
+    margin: auto;
+}
+
+
+canvas {
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.3);
+}
+
+
+/* =========================
+   ลูกศร
+========================= */
+
+.pointer {
+    position: absolute;
+
+    top: -8px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+        25px solid transparent;
+
+    border-right:
+        25px solid transparent;
+
+    border-top:
+        55px solid #ff3333;
+
+    z-index: 5;
+
+    filter:
+        drop-shadow(
+            0 3px 3px
+            rgba(0,0,0,0.4)
+        );
+}
+
+
+/* =========================
+   ปุ่มหมุน
+========================= */
+
+#spinBtn {
+    margin-top: 25px;
+
+    padding:
+        15px 45px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #ffd700;
+
+    color: #222;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,0.3);
+
+    transition: 0.2s;
+}
+
+
+#spinBtn:hover {
+    transform:
+        scale(1.05);
+}
+
+
+#spinBtn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   ผลรางวัล
+========================= */
+
+.result {
+    margin:
+        25px auto;
+
+    max-width: 600px;
+
+    padding: 15px;
+
+    min-height: 65px;
+
+    background:
+        rgba(255,255,255,0.15);
+
+    border-radius: 15px;
+
+    font-size: 23px;
+}
+
+
+.result strong {
+    font-size: 30px;
+}
+
+
+/* =========================
+   ประวัติรางวัล
+========================= */
+
+.history-box {
+    max-width: 650px;
+
+    margin:
+        0 auto 25px;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,0.2);
+
+    border-radius: 15px;
+
+    text-align: left;
+}
+
+
+.history-title {
+    text-align: center;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+
+.history-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    margin-bottom: 7px;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border-radius: 8px;
+}
+
+
+.history-number {
+    width: 30px;
+
+    height: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.2);
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+
+.history-prize {
+    font-size: 17px;
+
+    word-break: break-word;
+}
+
+
+.empty-history {
+    text-align: center;
+
+    padding: 15px;
+
+    opacity: 0.7;
+}
+
+
+.clear-history-btn {
+    display: block;
+
+    margin:
+        15px auto 0;
+
+    padding:
+        9px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff5252;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.clear-history-btn:hover {
+    transform:
+        scale(1.03);
+}
+
+
+/* =========================
+   กล่องแก้ไขรางวัล
+========================= */
+
+.edit-box {
+    max-width: 650px;
+
+    margin: auto;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,0.2);
+
+    border-radius: 15px;
+}
+
+
+.edit-box h2 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   ช่องรางวัล
+========================= */
+
+.prize-row {
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    align-items: center;
+}
+
+
+.prize-input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   ปุ่มลบ
+========================= */
+
+.delete-btn {
+    width: 45px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff5252;
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+
+.delete-btn:hover {
+    background: #ff2222;
+}
+
+
+/* =========================
+   ปุ่มเพิ่ม
+========================= */
+
+.add-btn {
+    margin-top: 10px;
+
+    padding:
+        10px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2196f3;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   ปุ่มอัปเดต
+========================= */
+
+.update-btn {
+    margin-top: 15px;
+
+    padding:
+        12px 30px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #00e676;
+
+    color: #111;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+
+.add-btn:hover,
+.update-btn:hover {
+    transform:
+        scale(1.03);
+}
+
+
+/* =========================
+   มือถือ
+========================= */
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 27px;
+    }
+
+
+    .wheel-box {
+        width: 90vw;
+    }
+
+
+    #spinBtn {
+        font-size: 19px;
+
+        padding:
+            13px 35px;
+    }
+
+
+    .result {
+        font-size: 20px;
+    }
+
+
+    .result strong {
+        font-size: 27px;
+    }
+
+
+    .prize-row {
+        width: 100%;
+    }
+
+
+    .history-prize {
+        font-size: 15px;
+    }
+
+}
